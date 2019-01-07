@@ -1,0 +1,12 @@
+FROM microsoft/dotnet-framework:4.7.2-sdk AS build
+WORKDIR /sl-sdk
+
+# Import the SL4 SDK installer
+COPY silverlight_sdk.exe .
+
+# Run the SL4 SDK installer in quiet mode, and prevent restart
+RUN ["silverlight_sdk",  "/quiet", "/norestart"]
+
+# Clean up the SDK installer directory
+WORKDIR /
+# RUN ["rd -r .\sl-sdk"]
