@@ -4,7 +4,7 @@
 FROM microsoft/dotnet-framework:4.7.2-sdk AS build
 
 # Import the SL4 SDK installer
-RUN "New-Item -Type Directory -Name sl-sdk -Path /; Invoke-WebRequest -Uri https://download.microsoft.com/download/F/2/C/F2CFFB78-03CF-4749-A6AE-EF60FB6FB14E/sdk/silverlight_sdk.exe -O silverlight_sdk.exe;  /sl-sdk/silverlight_sdk /quiet /norestart;"
+RUN "New-Item -Type Directory -Name sl-sdk -Path /; Invoke-WebRequest -Uri https://download.microsoft.com/download/F/2/C/F2CFFB78-03CF-4749-A6AE-EF60FB6FB14E/sdk/silverlight_sdk.exe -O /sl-sdk/silverlight_sdk.exe; & /sl-sdk/silverlight_sdk.exe /quiet /norestart;"
 RUN "Remove-Item -Recurse /sl-sdk;"
 
 LABEL version='0.1'  maintainer='Hugo Dahl <hugo@code-jedi.com>'
