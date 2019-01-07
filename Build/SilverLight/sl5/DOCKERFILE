@@ -1,6 +1,6 @@
 ARG frameworkVersion=4.7.2
 
-FROM microsoft/dotnet-framework:${frameworkVersion}-sdk AS build
+FROM microsoft/dotnet-framework:{frameworkVersion}-sdk AS build
 WORKDIR /sl-sdk
 
 # Download the SL5 SDK installer
