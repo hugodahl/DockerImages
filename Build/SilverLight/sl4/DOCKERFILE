@@ -1,12 +1,10 @@
+# ARG frameworkVersion=4.7.2
+
+# FROM microsoft/dotnet-framework:{frameworkVersion}-sdk AS build
 FROM microsoft/dotnet-framework:4.7.2-sdk AS build
-WORKDIR /sl-sdk
 
 # Import the SL4 SDK installer
-COPY silverlight_sdk.exe .
+RUN "New-Item -Type Directory -Name sl-sdk -Path /; Invoke-WebRequest -Uri https://download.microsoft.com/download/F/2/C/F2CFFB78-03CF-4749-A6AE-EF60FB6FB14E/sdk/silverlight_sdk.exe -O /sl-sdk/silverlight_sdk.exe; & /sl-sdk/silverlight_sdk.exe /quiet /norestart;"
+RUN "Remove-Item -Recurse /sl-sdk;"
 
-# Run the SL4 SDK installer in quiet mode, and prevent restart
-RUN ["silverlight_sdk",  "/quiet", "/norestart"]
-
-# Clean up the SDK installer directory
-WORKDIR /
-# RUN ["rd -r .\sl-sdk"]
+LABEL version='0.1'  maintainer='Hugo Dahl <hugo@code-jedi.com>'
