@@ -1,6 +1,6 @@
-ARG frameworkVersion=4.7.2
+ARG frameworkVersion=4.8
 
-FROM microsoft/dotnet-framework:${frameworkVersion}}-sdk AS build
+FROM mcr.microsoft.com/dotnet/framework/sdk:${frameworkVersion} AS build
 WORKDIR /sl-sdk
 
 # Download the SL5 SDK installer
